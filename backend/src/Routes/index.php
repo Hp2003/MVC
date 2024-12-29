@@ -3,9 +3,8 @@
 use App\Controllers\HomeController;
 use App\Router;
 use Lib\Config\Config;
-
+use Lib\Logger\Logger;
 
 Router::get('/', HomeController::class, 'index');
-
-print_r( Config::get('view.admin') );
+Logger::log('my custom logger', 'error');
 Router::dispatch();

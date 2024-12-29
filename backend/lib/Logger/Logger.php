@@ -20,7 +20,7 @@ class Logger
      */
     protected $logger = null;
 
-    public static function log(string $message, string $type = 'info', Level $level = Level::Debug)
+    public static function log(string $message, string $type = 'info', Level $level = Level::Debug) : void
     {
         $logger = new Log($type);
         $logger->pushHandler(new StreamHandler(BD  .Config::get('logger.log_dir') . '/' .  Config::get('logger.loggers')[$type], $level));

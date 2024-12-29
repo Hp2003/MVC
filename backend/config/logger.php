@@ -16,6 +16,7 @@ return [
         'notice' => 'notice.log',
         'info' => 'info.log',
         'degub' => 'debug.log',
+        'test' => 'test.log',
 
         // Add your custom log here
         // 'alias' => 'logfile.log'

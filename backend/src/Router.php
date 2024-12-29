@@ -4,32 +4,32 @@ namespace App;
 
 class Router
 {
-    protected $routes = [];
+    protected static $routes = [];
 
-    private function addRoute($route, $controller, $action, $method)
+    protected static function addRoute($route, $controller, $action, $method)
     {
 
-        $this->routes[$method][$route] = ['controller' => $controller, 'action' => $action];
+        Router::$routes[$method][$route] = ['controller' => $controller, 'action' => $action];
     }
 
-    public function get($route, $controller, $action)
+    public static function get($route, $controller, $action)
     {
-        $this->addRoute($route, $controller, $action, "GET");
+        Router::addRoute($route, $controller, $action, "GET");
     }
 
-    public function post($route, $controller, $action)
+    public static function post($route, $controller, $action)
     {
-        $this->addRoute($route, $controller, $action, "POST");
+        Router::addRoute($route, $controller, $action, "POST");
     }
 
-    public function dispatch()
+    public static function dispatch()
     {
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
         $method =  $_SERVER['REQUEST_METHOD'];
 
-        if (array_key_exists($uri, $this->routes[$method])) {
-            $controller = $this->routes[$method][$uri]['controller'];
-            $action = $this->routes[$method][$uri]['action'];
+        if (array_key_exists($uri, Router::$routes[$method])) {
+            $controller = Router::$routes[$method][$uri]['controller'];
+            $action = Router::$routes[$method][$uri]['action'];
 
             $controller = new $controller();
             $controller->$action();

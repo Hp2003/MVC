@@ -2,9 +2,10 @@
 
 use App\Controllers\HomeController;
 use App\Router;
+use Lib\Config\Config;
 
-$router = new Router();
 
-$router->get('/', HomeController::class, 'index');
+Router::get('/', HomeController::class, 'index');
 
-$router->dispatch();
+print_r( Config::get('view.admin') );
+Router::dispatch();

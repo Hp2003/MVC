@@ -32,7 +32,7 @@ class Config
         $filename = $args[0];
         $variabel = $args[1];
 
-        $config = include_once('../../backend/config/' . $filename . ".php");
+        $config = include('../../backend/config/' . $filename . ".php");
 
         return $config[$variabel] ?? $default;
     }   
